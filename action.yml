@@ -7,10 +7,14 @@ inputs:
 runs:
   using: "composite"
   steps: 
-    - run: mvn -B '-Dtest=*.unitary.*Test' test
+    - name: Run Selenium test
       shell: bash
-    - run: mvn -B '-Dtest=*.e2e.rest.*Test' test
+      run: mvn -B '-Dtest=*.unitary.*Test' test
+    - name: Run Selenium test
       shell: bash
-    - run: |
+      run: mvn -B '-Dtest=*.e2e.rest.*Test' test
+    - name: Run Selenium test
+      shell: bash
+      run: |
         [[ "${{ contains(inputs.exclude, 'selenium') }}" = false ]] && mvn -B '-Dtest=*.e2e.selenium.*Test' test || echo "Selenium test skipped" && true
-      shell: bash
+      
