@@ -17,4 +17,4 @@ jobs:
     - name: Run Maven test
       uses: ./ # Uses an action in the root directory
       with:
-        excludes: 'e2e'
+        exclude: 'selenium'
