@@ -13,4 +13,3 @@ runs:
       shell: bash
     - run: mvn -B '-Dtest=*.e2e.selenium.*Test' test
       shell: bash
-      if: ${{ ! contains(inputs.exclude, 'e2e') }}
