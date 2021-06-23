@@ -11,5 +11,6 @@ runs:
       shell: bash
     - run: mvn -B '-Dtest=*.e2e.rest.*Test' test
       shell: bash
-    - run: [[ "${{ contains(inputs.exclude, 'selenium') }}" = true ]] mvn -B '-Dtest=*.e2e.selenium.*Test' test || echo "Selenium test skipped" && true
+    - run: |
+        [[ "${{ contains(inputs.exclude, 'selenium') }}" = false ]] && mvn -B '-Dtest=*.e2e.selenium.*Test' test || echo "Selenium test skipped" && true
       shell: bash
