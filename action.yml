@@ -1,0 +1,16 @@
+name: 'RunMavenTest'
+description: 'Run all test of a Maven project'
+inputs:
+  exclude:  
+    description: 'Test to exclude'
+    required: false
+runs:
+  using: "composite"
+  steps: 
+    - run: mvn -B '-Dtest=*.unitary.*Test' test
+      shell: bash
+    - run: mvn -B '-Dtest=*.e2e.rest.*Test' test
+      shell: bash
+    - run: mvn -B '-Dtest=*.e2e.selenium.*Test' test
+      shell: bash
+      if: ${{ ! contains(inputs.exclude, 'e2e') }}
