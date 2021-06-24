@@ -2,9 +2,6 @@ name: Prueba
 
 on: 
   workflow_dispatch:
-  
-  push:
-    branches: ["release-*"]
 
 jobs:
   run-test:
@@ -18,6 +15,10 @@ jobs:
       with:
         java-version: 11
     - name: Run Maven test
+      id: maven-gha
       uses: ./ # Uses an action in the root directory
       with:
+        package: true
         exclude: 'selenium'
+    - name: Echo version 
+      run: echo ${{ steps.maven-gha.outputs.project-version }}
