@@ -16,9 +16,9 @@ jobs:
         java-version: 11
     - name: Run Maven test
       id: maven-gha
-      uses: ./ # Uses an action in the root directory
+      uses: Maes95/maven-action@1.0.0
       with:
-        package: true
+        package: false
         exclude: 'selenium'
     - name: Echo version 
       run: echo ${{ steps.maven-gha.outputs.project-version }}
